@@ -5,6 +5,8 @@ Using advanced deep learning, it efficiently compresses imagery from sensors lik
 
 CORSA's compressed features can be directly used to build downstream applications like land use classification change detection and natural disaster mapping and others.
 
+The compression service for Sentinel-2 can also directly be launched from the Terrascope platform in a no-code environment (https://portal.terrascope.be/catalogue/app-details/120).
+
 read more about CORSA:
 - VITO blog: https://blog.vito.be/remotesensing/corsa
 - Services: https://remotesensing.vito.be/services/corsa
