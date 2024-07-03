@@ -17,6 +17,11 @@ read more about CORSA:
 # Overview
 In this repository we provide a demo for CORSA applied on Sentinel-2 data, implemented on the Terrascope platform.
 The CORSA workflow compresses the 10m and 20m resolution bands of Sentinel-2 (10 bands) to compact tif files.
+
+
+There are various CORSA variants, each differing in size, backbone type, and codebook sizes. These variations influence the reconstruction quality, compression ratio, and performance on downstream applications. The CORSA encoder utilized in this notebook is a lightweight convolutional model with only 5.8 million parameters. It features a two-level codebook with 512 and 128 representative vectors, respectively, achieving a good balance between compression ratio and reconstruction quality. When compressed images are stored as bit arrays, a compression factor of 32.7 is achieved. The reconstruction quality, evaluated on an independent test set, reached a PSNR of 55.8.
+
+
 In the notebook we:
 - Compress large regions of Europe using the CORSA model
 - Uncompress (part of this) region to showcase the near-lossless compression
@@ -24,9 +29,10 @@ In the notebook we:
 
 
 # Get started
-0. If you don't have a Terrascope account already create follow the authentication link at the beginning of the notebook or create an account for free here: https://terrascope.be/
+0. If you don't already have a Terrascope account, create one for free at https://portal.terrascope.be/, else follow the authentication link at the beginning of the notebook.  <br>
+If you don't feel like running code you can also run the service interactively through the portal https://portal.terrascope.be/catalogue/app-details/120.
 
-1. To create the right environment the easiest option is to use conda ```conda env create -f environment.yml``` <br>
+1. To create the right environment the easiest option is to use conda ```conda env create -f environment.yml``` and afterwards ```conda  activate corsa_openeo```<br>
 Otherwise, it's still possible to install all the dependencies listed in the yml file with pip.
 
 2. Dive into the self-explanatory notebook 'corsa_explore.ipynb'

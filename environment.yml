@@ -1,15 +1,19 @@
 name: corsa_openeo
+channels:
+  - conda-forge
+  - defaults
 dependencies:
   - python>=3.5
   - numpy
   - matplotlib
+  - onnxruntime
+  - rasterio
+  - ipyleaflet
   - tqdm
   - pip
   - pip:
     - openeo==0.27
-    - onnxruntime==1.17.1
-    - rasterio==1.3.9
     - joblib==1.3.2
-    - ipyleaflet==0.19.1
+    - scikit-learn
     - pyproj
     - ipykernel
