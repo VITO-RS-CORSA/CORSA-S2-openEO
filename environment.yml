@@ -17,3 +17,5 @@ dependencies:
     - scikit-learn
     - pyproj
     - ipykernel
+    - xarray
+    - netcdf4
