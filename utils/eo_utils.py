@@ -3,9 +3,11 @@ import numpy as np
 import os.path as osp
 import onnxruntime as ort
 import os 
+import requests
 import joblib
 from tqdm.contrib import itertools
 from pyproj import Transformer
+import rasterio
 from ipyleaflet import (
     Map,
     DrawControl,
@@ -183,3 +185,46 @@ def reproject_bbox(bbox):
         print('Region does not fall under a single UTM zone. Falling back to long/lat.')
         crs_epsg = 4326
     return bbox, crs_epsg
+
+
+def optimize_compression(path, level=None, suffix=''):
+
+    if 'level0' in path:
+        dtype = 'uint16'
+    elif 'level1' in path:
+        dtype = 'uint8'
+    else:
+        dtype = None
+
+    if level is not None:
+        dtype_level = 'uint8' if level == 1 else 'uint16'
+        assert dtype == dtype_level, f"Expected {dtype_level} but got {dtype}"
+    
+    assert dtype is not None, f"Could not determine dtype for {path}"
+
+    with rasterio.open(path) as src:
+        r = src.read()
+
+        m = src.meta
+        m['count'] = 1
+        m['dtype'] = dtype
+        m['nodata'] = 0
+        m['compress'] = 'deflate'
+        
+        out_path = path.replace('.tif', f'{suffix}.tif')
+        with rasterio.open(out_path,'w',**m) as dst:
+            dst.write(np.uint8(r)) if dtype == 'uint8' else dst.write(np.uint16(r))
+
+def download_from_artifactory(rel_path, out_path, artifactory):
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    r = requests.get(f'{artifactory}/{rel_path}', allow_redirects=True)
+    if not os.path.exists(out_path):
+        if r.ok:
+            with open(out_path, 'wb') as f:
+                f.write(r.content)
+            print(f" {rel_path} downloaded")
+        else:
+            print(r.text)
+            raise Exception(f"Could not download {rel_path}")
+    else:
+        print(f" {rel_path} already downloaded")
