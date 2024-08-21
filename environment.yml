@@ -19,3 +19,4 @@ dependencies:
     - ipykernel
     - xarray
     - netcdf4
+    - scikit-image
