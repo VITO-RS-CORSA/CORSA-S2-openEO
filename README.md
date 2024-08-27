@@ -29,10 +29,11 @@ In the notebook we:
 
 
 # Get started
-0. If you don't already have a Terrascope account, create one for free at https://portal.terrascope.be/, else follow the authentication link at the beginning of the notebook.  <br>
-If you don't feel like running code you can also run the service interactively through the portal https://portal.terrascope.be/catalogue/app-details/120.
+0. If you don't already have a Terrascope account, create one for free at https://portal.terrascope.be/, else follow the authentication link at the beginning of the notebook.  <br><br>
+If you don't feel like running code you could also run the service interactively through the portal https://portal.terrascope.be/catalogue/app-details/120.
+However, the preferred way to interact for the first time with the compression service is through the notebook. In the notebook, you will explore tools to reconstruct the compressed image and use the compressions in a downstream tasks. These options are not available through the portal. 
 
-1. To create the right environment the easiest option is to use conda ```conda env create -f environment.yml``` and afterwards ```conda  activate corsa_openeo```<br>
+2. To create the right environment the easiest option is to use conda ```conda env create -f environment.yml``` and afterwards ```conda  activate corsa_openeo```<br>
 Otherwise, it's still possible to install all the dependencies listed in the yml file with pip.
 
-2. Dive into the self-explanatory notebook 'corsa_explore.ipynb'
+3. Dive into the self-explanatory notebook 'corsa_explore.ipynb'
