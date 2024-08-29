@@ -41,7 +41,9 @@ class openeoMap:
             rectangle = {"shapeOptions": {
                        "original": {},
                        "editing": {},
-            }})
+                        },
+                        "metric": ['km']
+            })
 
         self.map.add_control(draw)
         def handle_draw(target, action, geo_json):
@@ -212,8 +214,12 @@ def optimize_compression(path, level=None, suffix=''):
         m['compress'] = 'deflate'
         
         out_path = path.replace('.tif', f'{suffix}.tif')
-        with rasterio.open(out_path,'w',**m) as dst:
-            dst.write(np.uint8(r)) if dtype == 'uint8' else dst.write(np.uint16(r))
+        
+        try:
+            with rasterio.open(out_path,'w',**m) as dst:
+                dst.write(np.uint8(r)) if dtype == 'uint8' else dst.write(np.uint16(r))
+        except Exception as e:
+            print(f"Could realise full compression due to following error:\n{e}")
 
 def download_from_artifactory(rel_path, out_path, artifactory):
     os.makedirs(os.path.dirname(out_path), exist_ok=True)

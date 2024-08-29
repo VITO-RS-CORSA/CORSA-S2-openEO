@@ -15,7 +15,7 @@ read more about CORSA:
 <img src="images/corsa_flow.PNG" alt="The CORSA processing flow" width="800"/>
 
 # Overview
-In this repository we provide a demo for CORSA applied on Sentinel-2 data, implemented on the Terrascope platform.
+In this repository, we provide a demo for CORSA applied on Sentinel-2 data, implemented on the Terrascope platform.
 The CORSA workflow compresses the 10m and 20m resolution bands of Sentinel-2 (10 bands) to compact tif files.
 
 
@@ -29,11 +29,18 @@ In the notebook we:
 
 
 # Get started
-0. If you don't already have a Terrascope account, create one for free at https://portal.terrascope.be/, else follow the authentication link at the beginning of the notebook.  <br><br>
+If you don't already have a Terrascope account, create one for free at https://portal.terrascope.be/, else follow the authentication link at the beginning of the notebook.  <br><br>
 If you don't feel like running code you could also run the service interactively through the portal https://portal.terrascope.be/catalogue/app-details/120.
-However, the preferred way to interact for the first time with the compression service is through the notebook. In the notebook, you will explore tools to reconstruct the compressed image and use the compressions in a downstream tasks. These options are not available through the portal. 
+However, the preferred way to interact for the first time with the compression service is through the notebook. In the notebook, you will explore tools to reconstruct the compressed image and use the compressions in a downstream task. These options are not available through the portal. 
+
+**Option 1: Open in your favourite IDE** <br>
+1. Clone this repository
 
 2. To create the right environment the easiest option is to use conda ```conda env create -f environment.yml``` and afterwards ```conda  activate corsa_openeo```<br>
 Otherwise, it's still possible to install all the dependencies listed in the yml file with pip.
 
 3. Dive into the self-explanatory notebook 'corsa_explore.ipynb'
+
+**Option 2: Open in Colab**
+1. Go to https://githubtocolab.com/VITO-RS-CORSA/CORSA-S2-openEO/blob/main/corsa_explore.ipynb. This should open the notebook automatically in Colab.
+2. Make sure to set the flag `COLAB=True` in the first cell of the notebook. Dependencies will be handled within the notebook itself.
